@@ -2,7 +2,7 @@
 
 Bienvenue sur **Fruit Manager**, un tableau de bord interactif pour gérer votre plantation de fruits ! Ce projet, développé avec Streamlit, vous permet de suivre votre inventaire, vendre et récolter des fruits, et surveiller votre trésorerie en temps réel.
 
-## 🛠️ Installation avec poetry
+## 🛠️ Installation
 
 Création de l'environnement virtuel :
 ```bash
@@ -14,10 +14,12 @@ Lancez le projet avec poetry :
 poetry run streamlit run app.py
 ```
 
-##  🏷️ Installation avec UV
-uv venv 
-source .venv/bin/activate
-uv pip install -r <(uv pip compile pyproject.toml) 
+##  🏷️ Installation de l'environnement virtuel avec UV
+```bash
+uv venv   #initialiser  un environnement virtuel - uv init ne peut pas etre fiat du fait de la présence de pyproject.toml
+source .venv/bin/activate  #activer l'environnement
+uv pip install -r <(uv pip compile pyproject.toml)  #installer les dépendances listées dans pyproject.toml
+````
 
 ## 🚀 Fonctionnalités
 
