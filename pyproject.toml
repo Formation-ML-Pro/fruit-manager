@@ -1,18 +1,10 @@
 [project]
-name = "fruit-manager"
+name = "fruit-manager-mlf"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "Guillaume",email = "mlearnia@gmail.com"}
-]
+description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.13"
 dependencies = [
-    "streamlit (>=1.45.0,<2.0.0)",
-    "matplotlib (>=3.10.1,<4.0.0)"
+    "matplotlib>=3.10.3",
+    "streamlit>=1.47.0",
 ]
-
-
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
