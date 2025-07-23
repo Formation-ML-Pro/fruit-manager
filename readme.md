@@ -4,14 +4,14 @@ Bienvenue sur **Fruit Manager**, un tableau de bord interactif pour gérer votre
 
 ## 🛠️ Installation
 
-Création de l'environnement virtuel :
+Création de l'environnement virtuel avec UV:
 ```bash
-poetry install
+uv venv
 ```
 
-Lancez le projet avec poetry :
+Lancez le projet avec UV :
 ```bash
-poetry run streamlit run app.py
+uv run streamlit run app.py
 ```
 
 ## 🚀 Fonctionnalités
