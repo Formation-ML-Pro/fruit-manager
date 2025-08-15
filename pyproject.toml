@@ -9,7 +9,11 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "streamlit (>=1.45.0,<2.0.0)",
-    "matplotlib (>=3.10.1,<4.0.0)"
+    "matplotlib (>=3.10.1,<4.0.0)",
+    "shapely (>=2.0,<3.0)",
+    "requests (>=2.31,<3.0)",
+    "plotly (>=5.22,<6.0)",
+    "streamlit-plotly-events (>=0.0.6,<0.0.7)"
 ]
 
 
