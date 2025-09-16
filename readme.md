@@ -4,6 +4,8 @@ Bienvenue sur **Fruit Manager**, un tableau de bord interactif pour gérer votre
 
 ## 🛠️ Installation
 
+### Option 1 — Local avec Poetry
+
 Création de l'environnement virtuel :
 ```bash
 poetry install
@@ -13,6 +15,22 @@ Lancez le projet avec poetry :
 ```bash
 poetry run streamlit run app.py
 ```
+### Option 2 — Avec Docker
+
+Construire l’image :
+```bash
+docker build -t fruit-manager .
+```
+
+Lancer le container :
+```bash
+docker run -p 8501:8501 fruit-manager
+```
+ou bien directement depuis Docker Desktop :<br>
+Images -> Run image (logo triangle) -> Optional settings (ajouter un nom de container et le port 8501).
+
+💡 Note dev : Pour bénéficier de l’autocomplétion et du confort de l’IDE, il est conseillé d’installer aussi les dépendances en local (via Poetry).<br>
+Docker utilise un requirements.txt minimal pour l’exécution.
 
 ## 🚀 Fonctionnalités
 
@@ -25,6 +43,7 @@ poetry run streamlit run app.py
 - `app.py` : Interface principale Streamlit.
 - `fruit_manager.py` : Fonctions de gestion de l'inventaire, des ventes, des récoltes et de la trésorerie.
 - `data/` : Fichiers de données (inventaire, prix du marché, trésorerie).
+- `requirements.txt` : Dépendances minimales pour exécuter le projet avec Docker.
 
 ## ✨ Exemple d'utilisation
 
