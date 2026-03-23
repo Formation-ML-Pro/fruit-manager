@@ -1,3 +1,8 @@
 *.txt
 *.json
 __pycache__/
+ - Ajout de 4 onglets : En attente, Historique, Nouvelle commande, Statistiques                                                                                  
+  - Métriques rapides (commandes en attente, validées, annulées, CA)                                                                                              
+  - Formulaire de saisie manuelle de commande (client téléphone/sur place)                                                                                        
+  - Filtres par statut et recherche par nom client dans l'historique
+  - Graphiques statistiques : répartition par statut et top fruits commandés  
