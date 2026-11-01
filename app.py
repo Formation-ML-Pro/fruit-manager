@@ -1,43 +1,49 @@
 import streamlit as st
-from fruit_manager import *
+import database as db
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import pandas as pd
 
+db.creer_tables()
+db.importer_json()
+
+def afficher(message):
+    if message["status"] == "success":
+        st.success(message["text"])
+    else:
+        st.error(message["text"])
 
 st.title("🍇 Dashboard de la Plantation")
-
-inventaire = ouvrir_inventaire()
-prix = ouvrir_prix()
-tresorerie = ouvrir_tresorerie()
+fruits = list(db.lire_prix())
 
 with st.sidebar:
     st.header("🛒 Vendre des Fruits")
-    fruit_vendre = st.selectbox("Choisir un fruit", list(inventaire.keys()))
-    quantite_vendre = st.number_input("Quantité a vendre", min_value=1, step=1)
-
+    fruit_vendre = st.selectbox("Choisir un fruit", fruits)
+    quantite_vendre = st.number_input("Quantité à vendre", min_value=1, step=1)
+    client = st.text_input("Client (facultatif)")
     if st.button("Vendre"):
-        inventaire, tresorerie, message = vendre(inventaire, fruit_vendre, quantite_vendre, tresorerie, prix)
-        st.success(message['text'])
+        afficher(db.vendre(fruit_vendre, quantite_vendre, client))
 
     st.header("🌱 Récolter des Fruits")
-    fruit_recolter = st.selectbox("Choisir un fruit à récolter", list(inventaire.keys()), key="recolte_individuelle")
+    fruit_recolter = st.selectbox("Choisir un fruit à récolter", fruits, key="recolte_individuelle")
     quantite_recolter = st.number_input("Quantité à récolter", min_value=1, step=1, key="quantite_recolte")
-
     if st.button("Récolter"):
-        inventaire, message = recolter(inventaire, fruit_recolter, quantite_recolter)
-        st.success(message['text'])
+        afficher(db.recolter(fruit_recolter, quantite_recolter))
 
+
+inventaire = db.lire_inventaire()
+tresorerie = db.lire_tresorerie()
+historique = db.lire_historique()
 
 st.header("💰 Trésorerie")
 st.metric(label="Montant disponible", value=f"{tresorerie:.2f} $")
 
 st.header("📈 Évolution de la trésorerie")
-historique = lire_tresorerie_historique()
+historique = db.lire_historique()
 if historique:
 
     df = pd.DataFrame(historique).tail(20)  # Derniers 20 points
-    df["timestamp"] = pd.to_datetime(df["timestamp"])
+    df["timestamp"] = pd.to_datetime(df["timestamp"], format="ISO8601")
     df = df.sort_values("timestamp")
 
     fig, ax = plt.subplots()
@@ -65,7 +71,3 @@ ax.set_xlabel("Fruit")
 ax.set_ylabel("Quantité")
 ax.set_title("Inventaire")
 st.pyplot(fig)
-
-
-ecrire_inventaire(inventaire)
-ecrire_tresorerie(tresorerie)
